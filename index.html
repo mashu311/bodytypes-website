@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bodytypes.ai — Discover Your Kibbe Body Type</title>
+  <meta name="description" content="Learn about the Kibbe body type system and discover your unique yin/yang balance. AI-powered body type analysis coming soon.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f8f7f4',
+              100: '#f0ede6',
+              200: '#e0dace',
+              300: '#c9bfad',
+              400: '#b0a08a',
+              500: '#9a876e',
+              600: '#8a7560',
+              700: '#736051',
+              800: '#5f5045',
+              900: '#50443b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .yin-yang-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(to right, #c9bfad, #50443b);
+    }
+    .yin-yang-marker {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid #5f5045;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="text-xl font-bold text-brand-800 tracking-tight">bodytypes<span class="text-brand-500">.ai</span></a>
+      <div class="hidden sm:flex items-center gap-8">
+        <a href="#about" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">About</a>
+        <a href="#types" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">Body Types</a>
+        <a href="#waitlist" class="text-sm font-medium text-white bg-brand-700 hover:bg-brand-800 px-4 py-2 rounded-lg transition-colors">Join Waitlist</a>
+      </div>
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-btn" class="sm:hidden p-2 text-gray-600 hover:text-brand-700" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden sm:hidden border-t border-gray-100 bg-white">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="#about" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">About</a>
+        <a href="#types" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">Body Types</a>
+        <a href="#waitlist" class="text-sm font-medium text-brand-700">Join Waitlist</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 px-6 lg:pt-44 lg:pb-32">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
+        Discover Your<br>
+        <span class="text-brand-600">Kibbe Body Type</span>
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+        Understand your unique balance of yin and yang through David Kibbe's revolutionary body type system — the most nuanced approach to personal style.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#types" class="w-full sm:w-auto px-8 py-3.5 bg-brand-700 hover:bg-brand-800 text-white font-medium rounded-lg transition-colors text-center">
+          Explore the Types
+        </a>
+        <a href="#about" class="w-full sm:w-auto px-8 py-3.5 bg-brand-50 hover:bg-brand-100 text-brand-800 font-medium rounded-lg transition-colors text-center">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yin/Yang Visual Divider -->
+  <div class="max-w-xs mx-auto flex items-center gap-4 px-6">
+    <div class="flex-1 h-px bg-brand-200"></div>
+    <span class="text-brand-400 text-sm font-medium tracking-widest uppercase">Yin &middot; Yang</span>
+    <div class="flex-1 h-px bg-brand-200"></div>
+  </div>
+
+  <!-- About / What is Kibbe Section -->
+  <section id="about" class="py-20 px-6 lg:py-28">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center tracking-tight">
+        What is the Kibbe System?
+      </h2>
+      <p class="mt-4 text-gray-500 text-center max-w-2xl mx-auto">
+        A holistic approach to understanding your body's natural lines
+      </p>
+
+      <div class="mt-16 grid md:grid-cols-3 gap-10">
+        <!-- Card 1 -->
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-brand-50 rounded-2xl flex items-center justify-center">
+            <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="mt-5 font-semibold text-gray-900 text-lg">Beyond Simple Categories</h3>
+          <p class="mt-3 text-gray-500 text-sm leading-relaxed">
+            Unlike fruit shapes or somatotypes, Kibbe's system looks at the complete picture — your bone structure, body flesh, and facial features together.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-brand-50 rounded-2xl flex items-center justify-center">
+            <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+            </svg>
+          </div>
+          <h3 class="mt-5 font-semibold text-gray-900 text-lg">Yin &amp; Yang Balance</h3>
+          <p class="mt-3 text-gray-500 text-sm leading-relaxed">
+            Every body is a unique blend of yin (soft, rounded, delicate) and yang (sharp, angular, elongated). Your specific blend determines your type.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-brand-50 rounded-2xl flex items-center justify-center">
+            <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <h3 class="mt-5 font-semibold text-gray-900 text-lg">Dress for Your Lines</h3>
+          <p class="mt-3 text-gray-500 text-sm leading-relaxed">
+            Knowing your Kibbe type helps you choose clothing that harmonizes with your natural silhouette, creating an effortless, polished look.
+          </p>
+        </div>
+      </div>
+
+      <!-- Yin-Yang spectrum visual -->
+      <div class="mt-20 max-w-lg mx-auto">
+        <div class="flex justify-between text-xs text-gray-400 mb-2">
+          <span>Yang (Sharp, Angular)</span>
+          <span>Yin (Soft, Rounded)</span>
+        </div>
+        <div class="h-2 rounded-full bg-gradient-to-r from-brand-800 via-brand-400 to-brand-200"></div>
+        <p class="mt-4 text-center text-sm text-gray-400">
+          The 10 Kibbe types span the full yin–yang spectrum
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The 10 Kibbe Body Types -->
+  <section id="types" class="py-20 px-6 lg:py-28 bg-brand-50/60">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center tracking-tight">
+        The 10 Kibbe Body Types
+      </h2>
+      <p class="mt-4 text-gray-500 text-center max-w-2xl mx-auto">
+        Organized by family, from the most yang-dominant to the most yin-dominant
+      </p>
+
+      <!-- Dramatic Family -->
+      <div class="mt-16">
+        <h3 class="text-sm font-semibold text-brand-600 uppercase tracking-widest mb-6">Dramatic Family</h3>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- Dramatic -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Dramatic</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Pure Yang</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Long, sharp vertical line with angular bone structure. Narrow and elongated silhouette with minimal curves. Bold, striking features.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 5%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+          <!-- Soft Dramatic -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Soft Dramatic</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Yang + Yin</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Bold yang bone structure with yin body flesh. Tall and statuesque with curves layered over a strong, angular frame. Lush and dramatic.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 20%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Natural Family -->
+      <div class="mt-12">
+        <h3 class="text-sm font-semibold text-brand-600 uppercase tracking-widest mb-6">Natural Family</h3>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- Flamboyant Natural -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Flamboyant Natural</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Yang Dominant</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Broad, blunt bone structure with a strong frame. Wide shoulders, elongated limbs, and an athletic build. Open, approachable features.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 25%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+          <!-- Soft Natural -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Soft Natural</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Yang + Yin</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Broad bone structure softened by yin flesh. Slightly wide frame with gentle curves. An easygoing, approachable look with blunt edges.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 38%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classic Family -->
+      <div class="mt-12">
+        <h3 class="text-sm font-semibold text-brand-600 uppercase tracking-widest mb-6">Classic Family</h3>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- Dramatic Classic -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Dramatic Classic</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Balanced + Yang</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Evenly proportioned with a slight yang influence. Moderate height with refined, slightly angular features. Elegant and symmetrical.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 42%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+          <!-- Soft Classic -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Soft Classic</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Balanced + Yin</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Evenly proportioned with a slight yin softness. Moderate build, gentle curves, and delicate features. Graceful and understated.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 58%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gamine Family -->
+      <div class="mt-12">
+        <h3 class="text-sm font-semibold text-brand-600 uppercase tracking-widest mb-6">Gamine Family</h3>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- Flamboyant Gamine -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Flamboyant Gamine</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Mixed Yang</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Compact frame with angular, sharp bone structure. Petite with a leggy appearance and broad, boyish shoulders. Energetic and bold mix.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 62%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+          <!-- Soft Gamine -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Soft Gamine</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Mixed Yin</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Compact frame with rounded yin flesh over slightly angular bones. Petite with soft curves and youthful, doll-like features.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 72%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Romantic Family -->
+      <div class="mt-12">
+        <h3 class="text-sm font-semibold text-brand-600 uppercase tracking-widest mb-6">Romantic Family</h3>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- Theatrical Romantic -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Theatrical Romantic</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Yin + Yang</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Predominantly yin with a slight yang undercurrent. Delicate, rounded body with a touch of sharpness in bone structure. Ornate and sensual.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 82%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+          <!-- Romantic -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 hover:border-brand-200 transition-colors">
+            <div class="flex items-start justify-between">
+              <h4 class="font-semibold text-gray-900 text-lg">Romantic</h4>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">Pure Yin</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-500 leading-relaxed">
+              Full yin: soft, rounded bone structure with lush body flesh. Short and curvy with delicate, rounded features throughout. Dreamy and sensual.
+            </p>
+            <div class="mt-4 relative">
+              <div class="yin-yang-bar"></div>
+              <div class="yin-yang-marker" style="left: 95%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-1">
+              <span>Yang</span><span>Yin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Teaser Section -->
+  <section class="py-20 px-6 lg:py-28">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-50 rounded-full mb-8">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-500"></span>
+        </span>
+        <span class="text-sm font-medium text-brand-700">Coming Soon</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+        AI-Powered Body Type Analysis
+      </h2>
+      <p class="mt-6 text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+        We're building an intelligent tool that analyzes your proportions, bone structure, and features to suggest your most likely Kibbe body type — all from a few photos.
+      </p>
+      <div class="mt-12 grid sm:grid-cols-3 gap-8 text-left">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 text-sm">Photo Analysis</h4>
+            <p class="mt-1 text-sm text-gray-400">Upload photos for AI-driven proportion analysis</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 text-sm">Detailed Results</h4>
+            <p class="mt-1 text-sm text-gray-400">Get your yin/yang breakdown across all features</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 text-sm">Style Guidance</h4>
+            <p class="mt-1 text-sm text-gray-400">Personalized clothing recommendations for your type</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist / Email Signup -->
+  <section id="waitlist" class="py-20 px-6 lg:py-28 bg-brand-800">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+        Be the First to Try It
+      </h2>
+      <p class="mt-4 text-brand-300 text-lg">
+        Join the waitlist and we'll let you know when the AI body type analyzer launches.
+      </p>
+      <form id="waitlist-form" class="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          id="email-input"
+          placeholder="Enter your email"
+          required
+          class="flex-1 px-5 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent text-sm"
+        >
+        <button
+          type="submit"
+          class="px-8 py-3.5 bg-white text-brand-800 font-semibold rounded-lg hover:bg-brand-50 transition-colors text-sm whitespace-nowrap"
+        >
+          Join Waitlist
+        </button>
+      </form>
+      <p id="form-message" class="mt-4 text-sm text-brand-300 hidden"></p>
+      <p class="mt-4 text-xs text-brand-400">No spam, ever. We'll only email you about the launch.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-gray-100">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-gray-400">
+        &copy; 2026 <span class="font-medium text-gray-600">bodytypes.ai</span>. All rights reserved.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#about" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">About</a>
+        <a href="#types" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">Body Types</a>
+        <a href="support.html" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">Support</a>
+        <a href="privacy.html" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Waitlist form handling
+    const form = document.getElementById('waitlist-form');
+    const emailInput = document.getElementById('email-input');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (email) {
+        // Front-end only for now — wire up to a backend/service later
+        formMessage.textContent = `Thanks! We'll notify ${email} when we launch.`;
+        formMessage.classList.remove('hidden');
+        formMessage.classList.add('text-brand-200');
+        emailInput.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
