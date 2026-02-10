@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kibbe Body Type Test — bodytypes.ai</title>
+  <meta name="description" content="Take the Kibbe body type test. Answer 16 questions about your bone structure, body flesh, and facial features to discover your type.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f8f7f4',
+              100: '#f0ede6',
+              200: '#e0dace',
+              300: '#c9bfad',
+              400: '#b0a08a',
+              500: '#9a876e',
+              600: '#8a7560',
+              700: '#736051',
+              800: '#5f5045',
+              900: '#50443b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    input[type="radio"] { display: none; }
+    input[type="radio"]:checked + label {
+      background-color: #5f5045;
+      color: white;
+      border-color: #5f5045;
+    }
+    .section-hidden { display: none; }
+    .progress-fill { transition: width 0.4s ease; }
+  </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold text-brand-800 tracking-tight">bodytypes<span class="text-brand-500">.ai</span></a>
+      <div class="hidden sm:flex items-center gap-8">
+        <a href="index.html" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">Home</a>
+        <a href="quiz.html" class="text-sm text-brand-700 font-medium">Quiz</a>
+        <a href="support.html" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">Support</a>
+        <a href="privacy.html" class="text-sm text-gray-600 hover:text-brand-700 transition-colors">Privacy</a>
+      </div>
+      <button id="mobile-menu-btn" class="sm:hidden p-2 text-gray-600 hover:text-brand-700" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden sm:hidden border-t border-gray-100 bg-white">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="index.html" class="text-sm text-gray-600">Home</a>
+        <a href="quiz.html" class="text-sm text-brand-700 font-medium">Quiz</a>
+        <a href="support.html" class="text-sm text-gray-600">Support</a>
+        <a href="privacy.html" class="text-sm text-gray-600">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-32 pb-8 px-6 lg:pt-40 lg:pb-12">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">Kibbe Body Type Test</h1>
+      <p class="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+        Answer 16 questions about your bone structure, body flesh, and facial features. Look at yourself in a full-length mirror or use a photo taken at chest level in form-fitting clothing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Progress Bar -->
+  <div class="max-w-3xl mx-auto px-6 mb-10">
+    <div class="flex justify-between text-xs text-gray-400 mb-2">
+      <span id="progress-label">Question 1 of 16</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="h-2 bg-brand-100 rounded-full overflow-hidden">
+      <div id="progress-bar" class="progress-fill h-full bg-brand-600 rounded-full" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <!-- Quiz Form -->
+  <section class="pb-20 px-6 lg:pb-28">
+    <div class="max-w-3xl mx-auto">
+      <form id="quiz-form">
+
+        <!-- ===== PART 1: BONE STRUCTURE ===== -->
+
+        <!-- Q1 -->
+        <div class="quiz-question" data-question="1">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 1: Bone Structure</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">1. Vertical Line</h3>
+          <p class="text-sm text-gray-500 mb-6">How tall do you appear compared to your actual height?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q1" id="q1a" value="A"><label for="q1a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> I appear much taller than I am — long and narrow</label></div>
+            <div><input type="radio" name="q1" id="q1b" value="B"><label for="q1b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> I appear tall and broad — strong and wide</label></div>
+            <div><input type="radio" name="q1" id="q1c" value="C"><label for="q1c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> I appear moderate — average and evenly proportioned</label></div>
+            <div><input type="radio" name="q1" id="q1d" value="D"><label for="q1d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> I appear smaller and shorter than I am — slightly compact</label></div>
+            <div><input type="radio" name="q1" id="q1e" value="E"><label for="q1e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> I appear very petite and small — soft and rounded</label></div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-question section-hidden" data-question="2">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 1: Bone Structure</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">2. Shoulders</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your shoulder shape?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q2" id="q2a" value="A"><label for="q2a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Narrow, sharp, angular</label></div>
+            <div><input type="radio" name="q2" id="q2b" value="B"><label for="q2b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Broad, blunt, wide</label></div>
+            <div><input type="radio" name="q2" id="q2c" value="C"><label for="q2c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, even, symmetrical</label></div>
+            <div><input type="radio" name="q2" id="q2d" value="D"><label for="q2d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Narrow, slightly sloped or tapered</label></div>
+            <div><input type="radio" name="q2" id="q2e" value="E"><label for="q2e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Sloped, rounded, soft</label></div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-question section-hidden" data-question="3">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 1: Bone Structure</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">3. Arms & Legs</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your arms and legs?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q3" id="q3a" value="A"><label for="q3a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Elongated, narrow, long compared to body</label></div>
+            <div><input type="radio" name="q3" id="q3b" value="B"><label for="q3b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Elongated, broad, slightly wide</label></div>
+            <div><input type="radio" name="q3" id="q3c" value="C"><label for="q3c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, evenly proportioned</label></div>
+            <div><input type="radio" name="q3" id="q3d" value="D"><label for="q3d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Small, slightly short or delicate</label></div>
+            <div><input type="radio" name="q3" id="q3e" value="E"><label for="q3e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Small, soft, slightly fleshy</label></div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-question section-hidden" data-question="4">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 1: Bone Structure</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">4. Hands & Feet</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your hands and feet?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q4" id="q4a" value="A"><label for="q4a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Long, narrow, angular</label></div>
+            <div><input type="radio" name="q4" id="q4b" value="B"><label for="q4b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Large, broad, slightly wide</label></div>
+            <div><input type="radio" name="q4" id="q4c" value="C"><label for="q4c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, neither large nor small</label></div>
+            <div><input type="radio" name="q4" id="q4d" value="D"><label for="q4d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Small, narrow, delicate</label></div>
+            <div><input type="radio" name="q4" id="q4e" value="E"><label for="q4e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Small, soft, slightly wide and fleshy</label></div>
+          </div>
+        </div>
+
+        <!-- ===== PART 2: BODY FLESH ===== -->
+
+        <!-- Q5 -->
+        <div class="quiz-question section-hidden" data-question="5">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 2: Body Flesh</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">5. Overall Body Shape</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your overall body shape?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q5" id="q5a" value="A"><label for="q5a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Long, lean, sinewy — straight up and down</label></div>
+            <div><input type="radio" name="q5" id="q5b" value="B"><label for="q5b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Broad, muscular, tending toward athletic</label></div>
+            <div><input type="radio" name="q5" id="q5c" value="C"><label for="q5c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, evenly proportioned, trim</label></div>
+            <div><input type="radio" name="q5" id="q5d" value="D"><label for="q5d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Shapely, defined waist, slight curves</label></div>
+            <div><input type="radio" name="q5" id="q5e" value="E"><label for="q5e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very soft, rounded, lush curves</label></div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="quiz-question section-hidden" data-question="6">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 2: Body Flesh</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">6. Bustline</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your bustline?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q6" id="q6a" value="A"><label for="q6a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Flat, taut, narrow</label></div>
+            <div><input type="radio" name="q6" id="q6b" value="B"><label for="q6b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Wide, broad across the chest</label></div>
+            <div><input type="radio" name="q6" id="q6c" value="C"><label for="q6c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, in proportion with hips</label></div>
+            <div><input type="radio" name="q6" id="q6d" value="D"><label for="q6d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Shapely, slightly prominent</label></div>
+            <div><input type="radio" name="q6" id="q6e" value="E"><label for="q6e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very rounded, full, lush</label></div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="quiz-question section-hidden" data-question="7">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 2: Body Flesh</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">7. Waistline</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your waistline?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q7" id="q7a" value="A"><label for="q7a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Elongated, flat, straight</label></div>
+            <div><input type="radio" name="q7" id="q7b" value="B"><label for="q7b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Wide, slightly thick</label></div>
+            <div><input type="radio" name="q7" id="q7c" value="C"><label for="q7c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, slightly defined</label></div>
+            <div><input type="radio" name="q7" id="q7d" value="D"><label for="q7d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Very defined, shapely, small</label></div>
+            <div><input type="radio" name="q7" id="q7e" value="E"><label for="q7e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Softly defined, curved, rounded</label></div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="quiz-question section-hidden" data-question="8">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 2: Body Flesh</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">8. Hipline</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your hip shape?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q8" id="q8a" value="A"><label for="q8a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Straight, narrow, tapered</label></div>
+            <div><input type="radio" name="q8" id="q8b" value="B"><label for="q8b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Straight, slightly wide or athletic</label></div>
+            <div><input type="radio" name="q8" id="q8c" value="C"><label for="q8c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, in proportion</label></div>
+            <div><input type="radio" name="q8" id="q8d" value="D"><label for="q8d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Shapely, slightly curved</label></div>
+            <div><input type="radio" name="q8" id="q8e" value="E"><label for="q8e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very rounded, full, extremely soft</label></div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="quiz-question section-hidden" data-question="9">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 2: Body Flesh</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">9. Upper Arms & Thighs</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes the flesh on your upper arms and thighs?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q9" id="q9a" value="A"><label for="q9a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Long, lean, sinewy — taut with little flesh</label></div>
+            <div><input type="radio" name="q9" id="q9b" value="B"><label for="q9b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Muscular, sturdy, slightly wide</label></div>
+            <div><input type="radio" name="q9" id="q9c" value="C"><label for="q9c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, even muscle and flesh</label></div>
+            <div><input type="radio" name="q9" id="q9d" value="D"><label for="q9d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Soft, slightly fleshy</label></div>
+            <div><input type="radio" name="q9" id="q9e" value="E"><label for="q9e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very soft, rounded, fleshy</label></div>
+          </div>
+        </div>
+
+        <!-- ===== PART 3: FACIAL FEATURES ===== -->
+
+        <!-- Q10 -->
+        <div class="quiz-question section-hidden" data-question="10">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">10. Jawline</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your jawline?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q10" id="q10a" value="A"><label for="q10a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Sharp, angular, prominent</label></div>
+            <div><input type="radio" name="q10" id="q10b" value="B"><label for="q10b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Broad, blunt, slightly wide</label></div>
+            <div><input type="radio" name="q10" id="q10c" value="C"><label for="q10c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, even, neither sharp nor round</label></div>
+            <div><input type="radio" name="q10" id="q10d" value="D"><label for="q10d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Delicate, tapered, slightly narrow</label></div>
+            <div><input type="radio" name="q10" id="q10e" value="E"><label for="q10e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Rounded, soft, fleshy</label></div>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="quiz-question section-hidden" data-question="11">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">11. Nose</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your nose shape?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q11" id="q11a" value="A"><label for="q11a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Sharp, narrow, prominent</label></div>
+            <div><input type="radio" name="q11" id="q11b" value="B"><label for="q11b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Broad, blunt, slightly wide</label></div>
+            <div><input type="radio" name="q11" id="q11c" value="C"><label for="q11c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, symmetrical, neat</label></div>
+            <div><input type="radio" name="q11" id="q11d" value="D"><label for="q11d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Delicate, narrow, refined</label></div>
+            <div><input type="radio" name="q11" id="q11e" value="E"><label for="q11e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Small, rounded, soft</label></div>
+          </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="quiz-question section-hidden" data-question="12">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">12. Cheekbones</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your cheekbones?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q12" id="q12a" value="A"><label for="q12a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> High, prominent, angular</label></div>
+            <div><input type="radio" name="q12" id="q12b" value="B"><label for="q12b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Wide, broad, blunt</label></div>
+            <div><input type="radio" name="q12" id="q12c" value="C"><label for="q12c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, slightly defined</label></div>
+            <div><input type="radio" name="q12" id="q12d" value="D"><label for="q12d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Delicate, narrow, slightly prominent</label></div>
+            <div><input type="radio" name="q12" id="q12e" value="E"><label for="q12e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Rounded, soft, not very defined</label></div>
+          </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="quiz-question section-hidden" data-question="13">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">13. Eyes</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your eye shape?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q13" id="q13a" value="A"><label for="q13a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Narrow, straight, closely spaced</label></div>
+            <div><input type="radio" name="q13" id="q13b" value="B"><label for="q13b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Wide-set, open, straightforward</label></div>
+            <div><input type="radio" name="q13" id="q13c" value="C"><label for="q13c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Evenly spaced, moderate, symmetrical</label></div>
+            <div><input type="radio" name="q13" id="q13d" value="D"><label for="q13d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Rounded, slightly upturned or doe-like</label></div>
+            <div><input type="radio" name="q13" id="q13e" value="E"><label for="q13e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very round, large, luminous</label></div>
+          </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="quiz-question section-hidden" data-question="14">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">14. Lips</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your lip shape?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q14" id="q14a" value="A"><label for="q14a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Straight, narrow, thin</label></div>
+            <div><input type="radio" name="q14" id="q14b" value="B"><label for="q14b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Wide, straight, moderate thickness</label></div>
+            <div><input type="radio" name="q14" id="q14c" value="C"><label for="q14c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, evenly shaped, symmetrical</label></div>
+            <div><input type="radio" name="q14" id="q14d" value="D"><label for="q14d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Slightly full, rounded</label></div>
+            <div><input type="radio" name="q14" id="q14e" value="E"><label for="q14e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very full, round, lush</label></div>
+          </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="quiz-question section-hidden" data-question="15">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">15. Cheek Flesh</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes the flesh on your cheeks?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q15" id="q15a" value="A"><label for="q15a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Flat, taut, tight</label></div>
+            <div><input type="radio" name="q15" id="q15b" value="B"><label for="q15b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Fairly taut, sturdy, wide</label></div>
+            <div><input type="radio" name="q15" id="q15c" value="C"><label for="q15c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, evenly fleshed</label></div>
+            <div><input type="radio" name="q15" id="q15d" value="D"><label for="q15d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Soft, slightly full</label></div>
+            <div><input type="radio" name="q15" id="q15e" value="E"><label for="q15e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very round, full, soft</label></div>
+          </div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="quiz-question section-hidden" data-question="16">
+          <div class="mb-2 text-xs font-semibold text-brand-600 uppercase tracking-widest">Part 3: Facial Features</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">16. Hair</h3>
+          <p class="text-sm text-gray-500 mb-6">What best describes your natural hair texture?</p>
+          <div class="space-y-3">
+            <div><input type="radio" name="q16" id="q16a" value="A"><label for="q16a" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">A.</span> Sleek, smooth, straight, flat</label></div>
+            <div><input type="radio" name="q16" id="q16b" value="B"><label for="q16b" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">B.</span> Thick, strong, straight or slightly wavy</label></div>
+            <div><input type="radio" name="q16" id="q16c" value="C"><label for="q16c" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">C.</span> Moderate, neither thick nor thin, slight wave</label></div>
+            <div><input type="radio" name="q16" id="q16d" value="D"><label for="q16d" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">D.</span> Fine, wavy, slightly delicate</label></div>
+            <div><input type="radio" name="q16" id="q16e" value="E"><label for="q16e" class="block w-full px-5 py-4 border border-gray-200 rounded-xl text-sm cursor-pointer hover:border-brand-300 transition-colors"><span class="font-medium">E.</span> Very thick, curly or wavy, voluminous</label></div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-10">
+          <button type="button" id="prev-btn" class="hidden px-6 py-3 text-sm font-medium text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-lg transition-colors">
+            &larr; Previous
+          </button>
+          <div class="ml-auto">
+            <button type="button" id="next-btn" class="px-8 py-3 text-sm font-medium text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+              Next &rarr;
+            </button>
+            <button type="button" id="submit-btn" class="hidden px-8 py-3 text-sm font-medium text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+              See My Results
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- Results Section -->
+      <div id="results" class="hidden mt-10">
+        <div class="text-center py-12 px-6 bg-brand-50 rounded-3xl border border-brand-200">
+          <p class="text-sm font-semibold text-brand-600 uppercase tracking-widest mb-2">Your Kibbe Body Type</p>
+          <h2 id="result-type" class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight"></h2>
+          <p id="result-family" class="mt-2 text-brand-500 font-medium"></p>
+
+          <!-- Yin/Yang Bar -->
+          <div class="max-w-xs mx-auto mt-8">
+            <div class="flex justify-between text-xs text-gray-400 mb-2">
+              <span>Yang</span><span>Yin</span>
+            </div>
+            <div class="h-2 rounded-full bg-gradient-to-r from-brand-800 to-brand-200 relative">
+              <div id="result-marker" class="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-brand-700 rounded-full" style="left:50%"></div>
+            </div>
+          </div>
+
+          <p id="result-desc" class="mt-8 text-gray-600 leading-relaxed max-w-lg mx-auto"></p>
+
+          <!-- Score Breakdown -->
+          <div class="mt-10 max-w-sm mx-auto">
+            <h4 class="text-sm font-semibold text-gray-900 mb-4">Your Answer Breakdown</h4>
+            <div class="grid grid-cols-5 gap-2 text-center">
+              <div class="bg-white rounded-lg p-3 border border-gray-100">
+                <div id="count-a" class="text-2xl font-bold text-brand-800">0</div>
+                <div class="text-[10px] text-gray-400 mt-1">A</div>
+              </div>
+              <div class="bg-white rounded-lg p-3 border border-gray-100">
+                <div id="count-b" class="text-2xl font-bold text-brand-700">0</div>
+                <div class="text-[10px] text-gray-400 mt-1">B</div>
+              </div>
+              <div class="bg-white rounded-lg p-3 border border-gray-100">
+                <div id="count-c" class="text-2xl font-bold text-brand-500">0</div>
+                <div class="text-[10px] text-gray-400 mt-1">C</div>
+              </div>
+              <div class="bg-white rounded-lg p-3 border border-gray-100">
+                <div id="count-d" class="text-2xl font-bold text-brand-400">0</div>
+                <div class="text-[10px] text-gray-400 mt-1">D</div>
+              </div>
+              <div class="bg-white rounded-lg p-3 border border-gray-100">
+                <div id="count-e" class="text-2xl font-bold text-brand-300">0</div>
+                <div class="text-[10px] text-gray-400 mt-1">E</div>
+              </div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-300 mt-2 px-1">
+              <span>Most Yang</span><span>Most Yin</span>
+            </div>
+          </div>
+
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button id="retake-btn" class="px-6 py-3 text-sm font-medium text-brand-700 bg-white border border-brand-200 hover:bg-brand-100 rounded-lg transition-colors">
+              Retake Quiz
+            </button>
+            <a href="index.html#types" class="px-6 py-3 text-sm font-medium text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors">
+              Explore All Types
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-gray-100">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-gray-400">
+        &copy; 2026 <span class="font-medium text-gray-600">bodytypes.ai</span>. All rights reserved.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="index.html" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">Home</a>
+        <a href="support.html" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">Support</a>
+        <a href="privacy.html" class="text-sm text-gray-400 hover:text-brand-600 transition-colors">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Quiz logic
+    const totalQ = 16;
+    let current = 1;
+
+    const questions = document.querySelectorAll('.quiz-question');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressLabel = document.getElementById('progress-label');
+    const progressPct = document.getElementById('progress-pct');
+
+    function showQuestion(n) {
+      questions.forEach(q => {
+        q.classList.toggle('section-hidden', parseInt(q.dataset.question) !== n);
+      });
+      prevBtn.classList.toggle('hidden', n === 1);
+      if (n === totalQ) {
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.remove('hidden');
+        updateButtonState(submitBtn);
+      } else {
+        nextBtn.classList.remove('hidden');
+        submitBtn.classList.add('hidden');
+        updateButtonState(nextBtn);
+      }
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress() {
+      const answered = countAnswered();
+      const pct = Math.round((answered / totalQ) * 100);
+      progressBar.style.width = pct + '%';
+      progressLabel.textContent = `Question ${current} of ${totalQ}`;
+      progressPct.textContent = pct + '%';
+    }
+
+    function countAnswered() {
+      let count = 0;
+      for (let i = 1; i <= totalQ; i++) {
+        if (getAnswer(i)) count++;
+      }
+      return count;
+    }
+
+    function getAnswer(n) {
+      const sel = document.querySelector(`input[name="q${n}"]:checked`);
+      return sel ? sel.value : null;
+    }
+
+    function updateButtonState(btn) {
+      btn.disabled = !getAnswer(current);
+    }
+
+    // Listen for answer selections
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (current === totalQ) {
+          updateButtonState(submitBtn);
+        } else {
+          updateButtonState(nextBtn);
+        }
+        updateProgress();
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (getAnswer(current)) {
+        current++;
+        showQuestion(current);
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 1) {
+        current--;
+        showQuestion(current);
+      }
+    });
+
+    submitBtn.addEventListener('click', () => {
+      if (!getAnswer(current)) return;
+      calculateResult();
+    });
+
+    function calculateResult() {
+      const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+      const boneAnswers = [];
+      const fleshAnswers = [];
+      const faceAnswers = [];
+
+      for (let i = 1; i <= 4; i++) boneAnswers.push(getAnswer(i));
+      for (let i = 5; i <= 9; i++) fleshAnswers.push(getAnswer(i));
+      for (let i = 10; i <= 16; i++) faceAnswers.push(getAnswer(i));
+
+      const all = [...boneAnswers, ...fleshAnswers, ...faceAnswers];
+      all.forEach(a => { if (a) counts[a]++; });
+
+      const boneCounts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+      const fleshCounts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+      boneAnswers.forEach(a => { if (a) boneCounts[a]++; });
+      fleshAnswers.forEach(a => { if (a) fleshCounts[a]++; });
+
+      const yang = counts.A + counts.B;
+      const yin = counts.D + counts.E;
+      const balanced = counts.C;
+
+      const boneYang = boneCounts.A + boneCounts.B;
+      const boneYin = boneCounts.D + boneCounts.E;
+      const fleshYin = fleshCounts.D + fleshCounts.E;
+      const fleshYang = fleshCounts.A + fleshCounts.B;
+
+      let type = '';
+
+      // Dramatic: Almost all A answers
+      if (counts.A >= 10) {
+        type = 'Dramatic';
+      }
+      // Soft Dramatic: Mostly A in bone, D/E in flesh
+      else if (boneCounts.A >= 3 && fleshYin >= 3) {
+        type = 'Soft Dramatic';
+      }
+      // Flamboyant Natural: Mostly B, some A
+      else if (counts.B >= 8 || (counts.B >= 5 && counts.A >= 3)) {
+        type = 'Flamboyant Natural';
+      }
+      // Soft Natural: Mostly B in bone, D/E in flesh
+      else if (boneYang >= 2 && boneCounts.B >= 2 && fleshYin >= 2 && yang > yin) {
+        type = 'Soft Natural';
+      }
+      // Dramatic Classic: Mostly C with some A
+      else if (balanced >= 6 && counts.A >= 3 && counts.A > counts.E) {
+        type = 'Dramatic Classic';
+      }
+      // Soft Classic: Mostly C with some D/E
+      else if (balanced >= 6 && yin >= 3 && yin > yang) {
+        type = 'Soft Classic';
+      }
+      // Flamboyant Gamine: Mix of A and E extremes, yang-leaning
+      else if (counts.A >= 4 && counts.E >= 3 && yang > yin) {
+        type = 'Flamboyant Gamine';
+      }
+      // Soft Gamine: Mix of opposites, yin-leaning
+      else if (counts.D + counts.E >= 5 && counts.A >= 2 && yin > yang) {
+        type = 'Soft Gamine';
+      }
+      // Theatrical Romantic: Mostly D/E with a touch of A
+      else if (yin >= 8 && counts.A >= 1) {
+        type = 'Theatrical Romantic';
+      }
+      // Romantic: Almost all D/E
+      else if (counts.E >= 8 || (yin >= 12)) {
+        type = 'Romantic';
+      }
+      // Fallback logic based on dominant answers
+      else if (yang > yin && yang > balanced) {
+        if (counts.A > counts.B) type = 'Dramatic';
+        else type = 'Flamboyant Natural';
+      } else if (yin > yang && yin > balanced) {
+        if (counts.E > counts.D) type = 'Romantic';
+        else type = 'Theatrical Romantic';
+      } else if (balanced >= yang && balanced >= yin) {
+        if (yang > yin) type = 'Dramatic Classic';
+        else if (yin > yang) type = 'Soft Classic';
+        else type = 'Soft Classic';
+      } else {
+        type = 'Soft Natural';
+      }
+
+      showResult(type, counts);
+    }
+
+    const typeData = {
+      'Dramatic': {
+        family: 'Dramatic Family',
+        marker: 5,
+        desc: 'You have a strong yang dominant body type with a long, sharp vertical line and angular bone structure. Your silhouette is narrow and elongated with minimal curves. You look best in sleek, tailored clothing with clean lines that honor your striking vertical presence.'
+      },
+      'Soft Dramatic': {
+        family: 'Dramatic Family',
+        marker: 20,
+        desc: 'You have a bold yang bone structure softened by yin body flesh. You are tall and statuesque with curves layered over a strong frame. You look best in dramatic, flowing silhouettes that accommodate both your vertical line and your curves.'
+      },
+      'Flamboyant Natural': {
+        family: 'Natural Family',
+        marker: 25,
+        desc: 'You have a broad, blunt bone structure with a strong, athletic frame. Your shoulders are wide and your build is open and expansive. You look best in relaxed, unconstructed clothing with bold shapes that complement your free-spirited energy.'
+      },
+      'Soft Natural': {
+        family: 'Natural Family',
+        marker: 38,
+        desc: 'You have a broad bone structure softened by yin flesh, giving you gentle curves over a slightly wide frame. You look best in relaxed, flowing silhouettes with soft draping that follows your easy, approachable lines.'
+      },
+      'Dramatic Classic': {
+        family: 'Classic Family',
+        marker: 42,
+        desc: 'You have an evenly proportioned body with a slight yang influence — moderate height with refined, slightly angular features. You look best in tailored, elegant clothing with clean geometric lines and minimal embellishment.'
+      },
+      'Soft Classic': {
+        family: 'Classic Family',
+        marker: 58,
+        desc: 'You have an evenly proportioned body with a slight yin softness — a moderate build with gentle curves and delicate features. You look best in soft, elegant clothing with light draping and rounded details.'
+      },
+      'Flamboyant Gamine': {
+        family: 'Gamine Family',
+        marker: 62,
+        desc: 'You have a compact frame with angular, sharp bone structure. Your build is petite with a leggy appearance and energetic proportions. You look best in bold, high-contrast outfits that mix sharp and playful elements.'
+      },
+      'Soft Gamine': {
+        family: 'Gamine Family',
+        marker: 72,
+        desc: 'You have a compact frame with rounded yin flesh over slightly angular bones. You are petite with soft curves and youthful features. You look best in playful, detailed clothing that honors both your delicate curves and your lively energy.'
+      },
+      'Theatrical Romantic': {
+        family: 'Romantic Family',
+        marker: 82,
+        desc: 'You are predominantly yin with a slight yang undercurrent — a delicate, rounded body with a touch of sharpness in your bone structure. You look best in ornate, sensual clothing with intricate details and waist definition.'
+      },
+      'Romantic': {
+        family: 'Romantic Family',
+        marker: 95,
+        desc: 'You are pure yin — soft, rounded bone structure with lush body flesh. Your build is short and curvy with delicate features. You look best in flowing, feminine clothing with rounded shapes, draping, and soft textures.'
+      }
+    };
+
+    function showResult(type, counts) {
+      document.getElementById('quiz-form').classList.add('hidden');
+      document.querySelector('.flex.justify-between.mt-10')?.classList.add('hidden');
+
+      const results = document.getElementById('results');
+      results.classList.remove('hidden');
+
+      const data = typeData[type];
+      document.getElementById('result-type').textContent = type;
+      document.getElementById('result-family').textContent = data.family;
+      document.getElementById('result-desc').textContent = data.desc;
+      document.getElementById('result-marker').style.left = data.marker + '%';
+
+      document.getElementById('count-a').textContent = counts.A;
+      document.getElementById('count-b').textContent = counts.B;
+      document.getElementById('count-c').textContent = counts.C;
+      document.getElementById('count-d').textContent = counts.D;
+      document.getElementById('count-e').textContent = counts.E;
+
+      // Hide progress bar
+      document.querySelector('.max-w-3xl.mx-auto.px-6.mb-10').classList.add('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('retake-btn').addEventListener('click', () => {
+      // Reset form
+      document.getElementById('quiz-form').reset();
+      document.getElementById('quiz-form').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      document.querySelector('.max-w-3xl.mx-auto.px-6.mb-10').classList.remove('hidden');
+      current = 1;
+      showQuestion(1);
+    });
+
+    // Initialize
+    showQuestion(1);
+  </script>
+
+</body>
+</html>
