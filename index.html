@@ -436,160 +436,6 @@
   .tag-yin { background: var(--terracotta); }
   .tag-yang { background: var(--sage); }
 
-  /* ---- FEATURES STRIP ---- */
-  .features-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(28,22,18,0.08);
-    border-top: 1px solid rgba(28,22,18,0.08);
-    border-bottom: 1px solid rgba(28,22,18,0.08);
-    margin: 0;
-  }
-
-  .feature-cell {
-    background: var(--cream);
-    padding: 2.5rem 3rem;
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-    transition: background 0.2s;
-  }
-
-  .feature-cell:hover { background: var(--light-blush); }
-
-  .feat-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--light-blush);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.25rem;
-  }
-
-  .feat-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1875rem; font-weight: 600; margin-bottom: 0.25rem; }
-  .feat-desc { font-size: 0.8125rem; color: rgba(28,22,18,0.55); line-height: 1.6; }
-
-  /* ---- HOW IT WORKS ---- */
-  .how-section {
-    padding: 7rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.25rem, 3.5vw, 3.25rem);
-    font-weight: 300;
-    line-height: 1.15;
-    max-width: 500px;
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 4rem;
-  }
-
-  .step-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem;
-    font-weight: 300;
-    line-height: 1;
-    color: rgba(194,112,90,0.2);
-    margin-bottom: 0.5rem;
-  }
-
-  .step-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .step-desc { font-size: 0.875rem; line-height: 1.7; color: rgba(28,22,18,0.55); }
-
-  /* ---- CTA SECTION ---- */
-  .cta-section {
-    margin: 0 4rem 5rem;
-    background: var(--warm-dark);
-    border-radius: 28px;
-    padding: 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 50%, rgba(194,112,90,0.3) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 80%, rgba(122,140,117,0.2) 0%, transparent 50%);
-  }
-
-  .cta-content { position: relative; z-index: 1; }
-
-  .cta-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    font-weight: 300;
-    color: var(--cream);
-    margin-bottom: 1rem;
-    line-height: 1.1;
-  }
-
-  .cta-title em { font-style: italic; color: var(--blush); }
-
-  .cta-sub { color: rgba(247,243,238,0.5); font-size: 1rem; margin-bottom: 2.5rem; }
-
-  .btn-light {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--cream);
-    color: var(--warm-dark);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-light:hover { background: var(--blush); transform: translateY(-2px); }
-
-  /* ---- FOOTER ---- */
-  footer {
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(28,22,18,0.08);
-  }
-
-  .footer-logo {
-    display: block;
-    text-decoration: none;
-  }
-
-  .footer-logo img {
-    height: 1.75rem;
-  }
-
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a { font-size: 0.8125rem; color: rgba(28,22,18,0.45); text-decoration: none; }
-  .footer-links a:hover { color: var(--warm-dark); }
-
   /* ---- ANIMATIONS ---- */
   @keyframes heroReveal {
     from { opacity: 0; transform: translateY(20px); }
@@ -653,30 +499,6 @@
     .float-card { display: none; }
     .kibbe-card { left: 50%; transform: translateX(-50%); bottom: 20px; }
 
-    .features-strip {
-      grid-template-columns: 1fr;
-    }
-
-    .how-section {
-      padding: 4rem 1.5rem;
-    }
-
-    .steps {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .cta-section {
-      margin: 0 1rem 3rem;
-      padding: 3rem 1.5rem;
-    }
-
-    footer {
-      flex-direction: column;
-      gap: 1rem;
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
   }
 </style>
 </head>
@@ -688,8 +510,6 @@
     <img src="images/Website_logo.png" alt="BodyTypes AI">
   </a>
   <ul class="nav-links">
-    <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#features">Features</a></li>
     <li><a href="support.html">Support</a></li>
   </ul>
   <a class="btn-primary nav-cta" href="https://apps.apple.com/app/body-types/id6758646947" target="_blank" rel="noopener noreferrer">
@@ -708,9 +528,6 @@
       <a class="btn-primary" href="https://apps.apple.com/app/body-types/id6758646947" target="_blank" rel="noopener noreferrer">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Free Download
-      </a>
-      <a class="btn-secondary" href="#how-it-works">
-        Learn More →
       </a>
     </div>
     <div class="social-proof">
@@ -827,78 +644,6 @@
   </div>
 </section>
 
-<!-- FEATURES STRIP -->
-<div id="features" class="features-strip">
-  <div class="feature-cell">
-    <div class="feat-icon">📸</div>
-    <div>
-      <div class="feat-title">Photo Analysis</div>
-      <div class="feat-desc">Upload a full-body photo and our AI assesses your unique proportions and geometry.</div>
-    </div>
-  </div>
-  <div class="feature-cell">
-    <div class="feat-icon">✨</div>
-    <div>
-      <div class="feat-title">Yin/Yang Breakdown</div>
-      <div class="feat-desc">Understand your precise balance of yin and yang features across five dimensions.</div>
-    </div>
-  </div>
-  <div class="feature-cell">
-    <div class="feat-icon">👗</div>
-    <div>
-      <div class="feat-title">Style Scoring</div>
-      <div class="feat-desc">Score any outfit photo for alignment with your Kibbe type — instantly.</div>
-    </div>
-  </div>
-</div>
-
-<!-- HOW IT WORKS -->
-<section id="how-it-works" class="how-section">
-  <p class="section-label">The Process</p>
-  <h2 class="section-title">Three steps to your <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">true style identity</em></h2>
-  <div class="steps">
-    <div>
-      <div class="step-num">01</div>
-      <div class="step-title">Upload your photo</div>
-      <div class="step-desc">Take or upload a full-length photo in fitted, neutral clothing. Natural light works best.</div>
-    </div>
-    <div>
-      <div class="step-num">02</div>
-      <div class="step-title">AI reads your geometry</div>
-      <div class="step-desc">Our model analyzes bone structure, body flesh, and facial features across the Kibbe spectrum.</div>
-    </div>
-    <div>
-      <div class="step-num">03</div>
-      <div class="step-title">Receive your full report</div>
-      <div class="step-desc">Get your type, detailed yin/yang breakdown, and a curated list of style lines that work for you.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-content">
-    <h2 class="cta-title">Stop guessing.<br>Start <em>dressing right.</em></h2>
-    <p class="cta-sub">Join over 12,000 women who finally understand their body type.</p>
-    <a class="btn-light" href="https://apps.apple.com/app/body-types/id6758646947" target="_blank" rel="noopener noreferrer">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Download Free on App Store
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <a class="footer-logo" href="/">
-    <img src="images/Website_logo.png" alt="BodyTypes AI">
-  </a>
-  <div class="footer-links">
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="support.html">Support</a>
-    <span style="font-size:0.8125rem;color:rgba(28,22,18,0.45);">&copy; 2026</span>
-  </div>
-</footer>
 
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
